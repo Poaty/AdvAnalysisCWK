@@ -1,0 +1,22 @@
+{
+  "items": [
+    { "itemName": "Milk", "category": "Dairy", "expirationDate": "2026-02-12" },
+    { "itemName": "Cheddar Cheese", "category": "Dairy", "expirationDate": "2026-03-05" },
+    { "itemName": "Butter", "category": "Dairy", "expirationDate": "2026-03-20" },
+    { "itemName": "Yogurt", "category": "Dairy", "expirationDate": "2026-02-15" },
+    { "itemName": "Cream", "category": "Dairy", "expirationDate": "2026-02-18" },
+    { "itemName": "Haddock", "category": "Seafood", "expirationDate": "2026-07-15" },
+    { "itemName": "Salmon", "category": "Seafood", "expirationDate": "2026-07-18" },
+    { "itemName": "Prawns", "category": "Seafood", "expirationDate": "2026-07-14" },
+    { "itemName": "Tomatoes", "category": "Vegetables", "expirationDate": "2026-06-03" },
+    { "itemName": "Spinach", "category": "Vegetables", "expirationDate": "2026-05-30" },
+    { "itemName": "Potatoes", "category": "Vegetables", "expirationDate": "2026-08-22" },
+    { "itemName": "Onions", "category": "Vegetables", "expirationDate": "2026-08-01" },
+    { "itemName": "Flour", "category": "Dry Goods", "expirationDate": "2026-11-01" },
+    { "itemName": "Rice", "category": "Dry Goods", "expirationDate": "2027-01-10" },
+    { "itemName": "Olive Oil", "category": "Pantry", "expirationDate": "2027-04-19" },
+    { "itemName": "Black Pepper", "category": "Spices", "expirationDate": "2027-02-12" },
+    { "itemName": "Paprika", "category": "Spices", "expirationDate": "2027-03-02" },
+    { "itemName": "Salt", "category": "Spices", "expirationDate": "2028-01-01" }
+  ]
+}
