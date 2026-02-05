@@ -1,15 +1,13 @@
-const USERS = [
-  { username: "Head Chef", authority: "high", password: "headchef123" },
-  { username: "Chef", authority: "medium", password: "chef123" },
-  { username: "Delivery Driver", authority: "delivery", password: "delivery123" }
-];
+const PASSWORD = "fridge123";
 
 const tabLogin = document.getElementById("tab-login");
 const tabDelivery = document.getElementById("tab-delivery");
 const passwordForm = document.getElementById("password-form");
 const deliveryForm = document.getElementById("delivery-form");
-const deliveryHint = document.getElementById("delivery-hint");
+const otpForm = document.getElementById("otp-form");
 const app = document.getElementById("app");
+
+let currentOtp = null;
 
 function setMode(mode) {
   const loginMode = mode === "login";
@@ -20,6 +18,7 @@ function setMode(mode) {
 
   passwordForm.classList.toggle("hidden", !loginMode);
   deliveryForm.classList.toggle("hidden", loginMode);
+  otpForm.classList.add("hidden");
 }
 
 function showBlankInterface() {
@@ -34,12 +33,9 @@ tabDelivery.addEventListener("click", () => setMode("delivery"));
 
 passwordForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const typedPassword = document.getElementById("password-input").value.trim();
-  const matchedUser = USERS.find((user) => user.password === typedPassword);
+  const typedPassword = document.getElementById("password-input").value;
 
-  if (matchedUser) {
-    console.log(`Welcome ${matchedUser.username}`);
-    console.log(`Authority: ${matchedUser.authority}`);
+  if (typedPassword === PASSWORD) {
     showBlankInterface();
   } else {
     alert("Incorrect password. Try again.");
@@ -50,16 +46,20 @@ deliveryForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const phone = document.getElementById("phone-input").value.trim();
 
-  const deliveryUser = USERS.find((user) => user.username === "Delivery Driver");
-  const temporaryPassword = String(Math.floor(100000 + Math.random() * 900000));
-  deliveryUser.password = temporaryPassword;
+  currentOtp = String(Math.floor(100000 + Math.random() * 900000));
+  console.log(`OTP for ${phone}: ${currentOtp}`);
 
-  console.log(`Temporary login password for ${phone}: ${temporaryPassword}`);
-  console.log("Use this password in the Login tab for user: Delivery Driver");
+  otpForm.classList.remove("hidden");
+  document.getElementById("otp-input").value = "";
+});
 
-  deliveryHint.textContent = "Password sent to console. Please switch to Login and enter it as your password.";
-  deliveryHint.classList.remove("hidden");
+otpForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const otp = document.getElementById("otp-input").value.trim();
 
-  setMode("login");
-  document.getElementById("password-input").focus();
+  if (otp === currentOtp) {
+    showBlankInterface();
+  } else {
+    alert("Invalid OTP. Check console and try again.");
+  }
 });

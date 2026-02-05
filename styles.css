@@ -120,12 +120,6 @@ input:focus {
   cursor: pointer;
 }
 
-.hint {
-  margin: 2px 4px 0;
-  font-size: 0.95rem;
-  color: #4b4f53;
-}
-
 .action:disabled {
   opacity: 0.6;
   cursor: not-allowed;
