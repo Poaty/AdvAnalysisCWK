@@ -1,4 +1,8 @@
-const DEFAULT_PASSWORD = "fridge123";
+const USERS = [
+  { username: "Head Chef", authority: "high", password: "headchef123" },
+  { username: "Chef", authority: "medium", password: "chef123" },
+  { username: "Delivery Driver", authority: "delivery", password: "delivery123" }
+];
 
 const tabLogin = document.getElementById("tab-login");
 const tabDelivery = document.getElementById("tab-delivery");
@@ -6,8 +10,6 @@ const passwordForm = document.getElementById("password-form");
 const deliveryForm = document.getElementById("delivery-form");
 const deliveryHint = document.getElementById("delivery-hint");
 const app = document.getElementById("app");
-
-let temporaryPassword = null;
 
 function setMode(mode) {
   const loginMode = mode === "login";
@@ -33,10 +35,11 @@ tabDelivery.addEventListener("click", () => setMode("delivery"));
 passwordForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const typedPassword = document.getElementById("password-input").value.trim();
-  const isDefaultPassword = typedPassword === DEFAULT_PASSWORD;
-  const isOtpPassword = temporaryPassword !== null && typedPassword === temporaryPassword;
+  const matchedUser = USERS.find((user) => user.password === typedPassword);
 
-  if (isDefaultPassword || isOtpPassword) {
+  if (matchedUser) {
+    console.log(`Welcome ${matchedUser.username}`);
+    console.log(`Authority: ${matchedUser.authority}`);
     showBlankInterface();
   } else {
     alert("Incorrect password. Try again.");
@@ -47,8 +50,12 @@ deliveryForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const phone = document.getElementById("phone-input").value.trim();
 
-  temporaryPassword = String(Math.floor(100000 + Math.random() * 900000));
+  const deliveryUser = USERS.find((user) => user.username === "Delivery Driver");
+  const temporaryPassword = String(Math.floor(100000 + Math.random() * 900000));
+  deliveryUser.password = temporaryPassword;
+
   console.log(`Temporary login password for ${phone}: ${temporaryPassword}`);
+  console.log("Use this password in the Login tab for user: Delivery Driver");
 
   deliveryHint.textContent = "Password sent to console. Please switch to Login and enter it as your password.";
   deliveryHint.classList.remove("hidden");
